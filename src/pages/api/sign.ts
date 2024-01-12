@@ -10,7 +10,6 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    console.log(req.body)
     const response = await fetch('http://localhost:8000/api/user/sign', {
         body: JSON.stringify(req.body),
         method:'post',
@@ -21,6 +20,7 @@ export default async function handler(
     const data = await response.json()
     if(response.ok){
         setCookie('refresh_token',data.data.token.token,{req,res})
+        setCookie('user',{...data.data.user,permissions:data.data.permissions},{req,res})
     }
     res.status(data.status).json(data)
 }

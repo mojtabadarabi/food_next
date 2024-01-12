@@ -9,17 +9,16 @@ import { GetServerSidePropsContext } from "next";
 
 
 export default function Home() {
-  const { data ,isError} = useQuery({ queryKey: ['main_page'], queryFn: () => getMainPageApi() })
-  console.log(data)
+  const { data, isError } = useQuery({ queryKey: ['main_page'], queryFn: () => getMainPageApi() })
   return (
     <main
       className={``}
     >
       <HeaderImage />
       <div className="flex flex-col gap-8">
-        <FoodsCategory />
-        <MainFoods foods={data?.foods} isError={isError}/>
-        <MainRestaurants restaurants={data?.restaurants} isError={isError}/>
+        <FoodsCategory/>
+        <MainFoods foods={data?.foods} isError={isError} />
+        <MainRestaurants restaurants={data?.restaurants} isError={isError} />
       </div>
     </main>
   )

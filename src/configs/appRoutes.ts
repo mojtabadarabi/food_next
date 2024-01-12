@@ -3,4 +3,9 @@ export default {
     allFoods:'food',
     singleRestaurant: (id: string) => 'restaurant/' + id,
     allRestaurants:'restaurant',
+    sign:'/sign',
+    profile:'profile',
+    home:'/',
+    admin:'admin',
+    accessManagement:'admin/access'
 }

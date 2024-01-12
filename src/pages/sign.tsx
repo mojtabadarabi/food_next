@@ -1,16 +1,19 @@
-import { signUserApi } from "@/api/user"
+import { signUserApi } from "@/api"
 import SignForm from "@/components/SignForm"
+import { useUser } from "@/lib/providers/UserProvider"
 import { useMutation } from '@tanstack/react-query'
 import { GetServerSidePropsContext } from "next"
 import { useRouter } from "next/router"
 
 export default function Sign() {
+    const {setUser} = useUser()
     const rotuer = useRouter()
     const { mutate, isPending } = useMutation({
         mutationFn: signUserApi,
         mutationKey: ['sign'],
-        onSuccess: (data) => {
-            rotuer.push('/admin/restaurants')
+        onSuccess: (data) => {  
+            setUser(data.data)
+            rotuer.push('/')
         }
     })
     const handleSubmitForm = (e: React.SyntheticEvent) => {
@@ -18,7 +21,7 @@ export default function Sign() {
         const target = e.target as typeof e.target & {
             username: { value: string };
             password: { value: string };
-        };
+        };  
         mutate({
             username: target['username'].value,
             password: target['password'].value

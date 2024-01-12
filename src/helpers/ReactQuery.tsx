@@ -16,6 +16,8 @@ export const reactQuerySsr = async ({
     let headers: RequestsHeaders | null = null
     try {
         headers = getReqHeaders({ context })
+        console.log(headers)
+        console.log('headers')
         if (headers) {
             axiosInstance.defaults.headers.common = {
                 ...axiosInstance.defaults.headers.common,
@@ -64,8 +66,8 @@ export function getReqHeaders({ context }: { context: GetServerSidePropsContext 
     let headers: RequestsHeaders = {
         Authorization: null
     }
-    if (context.req.cookies['token']) {
-        headers.Authorization = context.req.cookies['token']
+    if (context.req.cookies['refresh_token']) {
+        headers.Authorization = 'Bearer '+context.req.cookies['refresh_token']
     }
     return headers
 }
@@ -81,3 +83,7 @@ export const PreparationComponent = (WrappedComponent: any) => {
 
     return Component;
 };
+
+export const isUserHavePermissions=(permissions:string[],neededPermissions:string[])=>{
+    return permissions&&permissions.length!==0&&neededPermissions.every((i => v => i = permissions.indexOf(v, i) + 1)(0));
+}   
