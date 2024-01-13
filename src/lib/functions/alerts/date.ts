@@ -19,7 +19,6 @@ export function formatDateToGregorian(obj) {
 }
 
 export function formatDateToPersianByTime(dateObj) {
-    console.log(dateObj)
   return moment(dateObj).format('HH:MM:SS - jYYYY/jM/jD');
 }
 

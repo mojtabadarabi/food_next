@@ -15,15 +15,15 @@ export default function access() {
         mutationFn: changeRoleApi,
         mutationKey: ['change_role'],
         onSuccess: (data) => {  
-            console.log(data)
-            console.log('data')
-            queryClient.setQueryData(
-                ['users', { _id:data.data._id }],
-                (oldData) => oldData ? {
-                  ...oldData,
-                  role: 'ADDDD'
-                } : oldData
-              )
+            queryClient.setQueryData(['users'],cashedData=>{
+                const updatedUsers =[...cashedData.data]
+                const foundedUser = updatedUsers.findIndex(user=>user._id===data.data._id)
+                updatedUsers[foundedUser].role = data.data.role
+                return {
+                    ...data,
+                    data:updatedUsers
+                }
+            })
         }
     })
 
@@ -81,7 +81,8 @@ export default function access() {
                                 onChange={(e)=>handleChange(e.target.value,row?.row?._id)}
                             >
                                 <MenuItem value={'ADMIN'}>ادمین</MenuItem>
-                                <MenuItem value={'SUPER_ADMIN'}>فوق ادمین</MenuItem>
+                                <MenuItem value={'RESTAURANT_ADMIN'}>ادمین رستوران</MenuItem>
+                                <MenuItem value={'USER'}>کاربر</MenuItem>
                             </Select>
                         </FormControl>
                     </div>

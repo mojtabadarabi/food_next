@@ -35,14 +35,14 @@ export default function Sign() {
 
 export function getServerSideProps(context: GetServerSidePropsContext) {
     const refreshTokenCookie = context.req.cookies['refresh_token']
-    if (refreshTokenCookie) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/admin/restaurants"
-            }
-        }
-    }
+    // if (refreshTokenCookie) {
+    //     return {
+    //         redirect: {
+    //             permanent: false,
+    //             destination: "/admin/restaurants"
+    //         }
+    //     }
+    // }
     return {
         props: {
 
