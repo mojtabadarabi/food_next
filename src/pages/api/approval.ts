@@ -11,10 +11,8 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    const response = await fetch('http://localhost:8000/api/user/change-role/'+req.body.userId, {
-        body: JSON.stringify({
-            role:req.body.role
-        }),
+    const response = await fetch('http://localhost:8000/api/action/approval', {
+        body: JSON.stringify(req.body),
         method:'put',
         headers:{
             "Authorization":'Bearer '+req.cookies?.refresh_token,

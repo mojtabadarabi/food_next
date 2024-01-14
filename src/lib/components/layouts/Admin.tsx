@@ -13,6 +13,9 @@ export default function Admin({ children }: { children: React.ReactNode }) {
           <Link href={appRoutes.accessManagement} className={`font-sm text-bold hover:text-black `} >
             مدیریت دسترسی ها
           </Link>
+          <Link href={appRoutes.restaurantManagement} className={`font-sm text-bold hover:text-black `} >
+            مدیریت رستوران ها
+          </Link>
 
         </div>
       </div>

@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { checkResponseStatus } from '@/helpers/auth'
 import { deleteCookie, setCookie } from 'cookies-next'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -18,5 +19,6 @@ export default async function handler(
         }
     })
     const data = await response.json()
+    checkResponseStatus(data.status,{req,res})
     res.status(data.status).json(data?.data||data)
 }

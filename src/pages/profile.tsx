@@ -1,19 +1,17 @@
 import { logoutUserApi } from '@/api/user';
 import appRoutes from '@/configs/appRoutes';
-import { useUser } from '@/lib/providers/UserProvider';
 import { useMutation } from '@tanstack/react-query';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const profile = () => {
+const profile = ({ user }) => {
     const router = useRouter()
-    const user = useUser()
     const { mutate, isPending } = useMutation({
         mutationFn: logoutUserApi,
         mutationKey: ['logout'],
         onSuccess: () => {
-            user.logoutUser()
+            user?.logoutUser?.()
             router.push('/')
         }
     })
@@ -27,9 +25,13 @@ const profile = () => {
                 {/* {
                     user?.user?.
                 } */}
-                <Link href={appRoutes.admin} className='bg-yellow-100 border p-2 text-center text-md font-medium '>
-                    داشبورد
-                </Link>
+                {
+                    user && user.permissions && (
+                        <Link href={appRoutes.admin} className='bg-yellow-100 border p-2 text-center text-md font-medium '>
+                            داشبورد
+                        </Link>
+                    )
+                }
                 <button onClick={() => mutate()} className='bg-red-100 border p-2 text-md font-medium '>
                     {isPending ? '...' : 'خروج'}
                 </button>

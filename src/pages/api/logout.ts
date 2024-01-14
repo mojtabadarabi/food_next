@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { removeAuthCookies } from '@/helpers/auth'
 import { deleteCookie, setCookie } from 'cookies-next'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -21,7 +22,7 @@ export default async function handler(
     })
     const data = await response.json()
     if(response.ok){
-        deleteCookie('refresh_token',{req,res})
+        removeAuthCookies({req,res})
     }
     res.status(data.status).json(data)
 }

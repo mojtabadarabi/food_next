@@ -7,5 +7,6 @@ export default {
     profile:'profile',
     home:'/',
     admin:'admin',
-    accessManagement:'admin/access'
+    accessManagement:'/admin/access',
+    restaurantManagement:'/admin/restaurants'
 }

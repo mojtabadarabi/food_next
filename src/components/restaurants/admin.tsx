@@ -1,13 +1,11 @@
 import { deleteRestaurantApi } from '@/api/restaurant/admin';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Link from 'next/link';
+import useRestaurantsTable from './useRestaurantsTable';
 
 
 export function AdminRestaurants({ data }: any) {
     const queryClient = useQueryClient()
-    console.log(data)
-    console.log('data')
     const { mutate } = useMutation({
         mutationFn: deleteRestaurantApi,
         mutationKey: ['deleteRestaurant'],
@@ -17,23 +15,13 @@ export function AdminRestaurants({ data }: any) {
             queryClient.invalidateQueries({ queryKey: ['admin_restaurants'] })
         }
     })
-
+    const { Table } = useRestaurantsTable({ restaurants: data.data })
     console.log(data)
     return (
         <main
             className={``}
         >
-            <div className='flex flex-col gap-4 p-2 '>
-                {
-                    data.data.map((item: any) => (
-                        <div className='bg-white p-1 m-1 border rounded'>
-                            <h1 className='text-xl '>{item.name}</h1>
-                            <Link href={'/admin/restaurants/' + item._id}>edit</Link>
-                            <button onClick={() => mutate(item._id)}>delete</button>
-                        </div>
-                    ))
-                }
-            </div>
+            <Table/>
             <div>
                 <Link href={'/admin/restaurants/create'}>Add restaurant</Link>
             </div>
