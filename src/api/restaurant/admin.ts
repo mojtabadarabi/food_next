@@ -11,7 +11,7 @@ export const CreateRestaurantApi = async (payload: {
     adminUserName: String,
     adminPassword: String
 }) => {
-    return axiosInstance.post('restaurant/client', payload)
+    return axiosInstance.post('/api/create-restaurant', payload,{baseURL:''})
 }
 
 export const editRestaurantApi = async (payload: {

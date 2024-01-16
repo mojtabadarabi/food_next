@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <UserProvider user={pageProps?.user || null}>
       <ReactQueryContainer dehydratedState={pageProps.dehydratedState}>
         <main className={myFont.className}>
-          <Template template={pageProps.isAdminTemplate ? 'admin' : 'public'}>
+          <Template user={pageProps.user} template={pageProps.isAdminTemplate ? 'admin' : 'public'}>
             <Component {...pageProps} />
           </Template>
 

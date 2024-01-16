@@ -26,7 +26,7 @@ const profile = ({ user }) => {
                     user?.user?.
                 } */}
                 {
-                    user && user.permissions && (
+                    user && user.permissions && user.permissions.length !== 0 && (
                         <Link href={appRoutes.admin} className='bg-yellow-100 border p-2 text-center text-md font-medium '>
                             داشبورد
                         </Link>

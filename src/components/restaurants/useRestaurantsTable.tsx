@@ -13,7 +13,6 @@ export default function useRestaurantsTable({ restaurants }) {
         mutationFn: changeApprovalApi,
         mutationKey: ['change_approval'],
         onSuccess: (data) => {
-            console.log('ssssssssssssssss')
             queryClient.setQueryData(['admin_restaurants'], cashedData => {
                 const updatedUsers = [...cashedData.data]
                 const foundedUser = updatedUsers.findIndex(user => user._id === variables.ids[0])
@@ -67,16 +66,17 @@ export default function useRestaurantsTable({ restaurants }) {
             width: 150,
             renderCell: (row) => {
                 return (
-                    <div className='flex items-center justify-center'>
+                    <div className='flex items-center w-[81px] justify-center'>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                            <InputLabel id="demo-simple-select-label">وضعیت تایید</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={row.value}
+                                value={row.value===null?"":row.value}
                                 label="Role"
                                 onChange={(e) => handleChange(row?.row?._id, e.target.value)}
                             >
+                                <MenuItem value={""}>در انتظار تایید</MenuItem>
                                 <MenuItem value={true}>تایید</MenuItem>
                                 <MenuItem value={false}>رد</MenuItem>
                             </Select>
