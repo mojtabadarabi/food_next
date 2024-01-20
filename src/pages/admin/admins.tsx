@@ -1,28 +1,27 @@
 import { getAdminPageApi } from '@/api/pages/adminPage'
+import { getManageAdminsPageApi } from '@/api/pages/manageAdmins'
+import {ManageAdmins} from '@/components'
 import appRoutes from '@/configs/appRoutes'
 import { isUserHavePermissions, reactQuerySsr } from '@/helpers/ReactQuery'
 import { useQuery } from '@tanstack/react-query'
 import { GetServerSidePropsContext } from 'next'
 
 export default function index() {
-    // const {data} = useQuery({ queryKey: ['admin_page'], queryFn: () => getAdminPageApi() })
-    // console.log(data)
-    // console.log('data')
+    const {data} = useQuery({ queryKey: ['manage-admin-page'], queryFn: () => getManageAdminsPageApi() })
+
     return (
-        <div className='p-3'>
-            <div className='flex items-center gap-2 '>
-                admin ha
-            </div>
+        <div className=''>
+            <ManageAdmins users={data?.restaurantAdmins||[]}/>
         </div>
     )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    // const props = await reactQuerySsr({
-    //     context,
-    //     queryKey: ['admin_page'],
-    //     queryFn: () => getAdminPageApi()
-    // })
+    await reactQuerySsr({
+        context,
+        queryKey: ['manage-admin-page'],
+        queryFn: () => getManageAdminsPageApi()
+    })
     const user = context.req.cookies['user']
     const isHavePermissions = isUserHavePermissions(JSON.parse(user)?.permissions, ['OWN_MANAGEMENT'])
     if (!isHavePermissions) {

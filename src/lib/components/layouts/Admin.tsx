@@ -35,7 +35,7 @@ export default function Admin({ children, user }: { children: React.ReactNode, u
         <nav className='h-[60px] bg-slate-500 flex items-center text-md font-bold p-2 text-white w-full'>
           داشبورد
         </nav>
-        <div className='w-full'>
+        <div className='w-full p-2'>
           {children}
         </div>
       </div>

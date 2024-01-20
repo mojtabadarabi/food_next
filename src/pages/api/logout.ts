@@ -21,8 +21,8 @@ export default async function handler(
         }
     })
     const data = await response.json()
-    if(response.ok){
+    // if(response.ok){
         removeAuthCookies({req,res})
-    }
+    // }
     res.status(data.status).json(data)
 }

@@ -28,3 +28,9 @@ export const getUsersApi = async () => {
         baseURL: '',
     })
 }
+
+export const searchUserApi = async (payload: { username:String }) => {
+    return axiosInstance.post('/api/search-user',payload, {
+        baseURL: '',
+    })
+}

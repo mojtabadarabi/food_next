@@ -39,8 +39,6 @@ App.getInitialProps = async (appContext: AppContext) => {
       queryFn: () => getUser()
     })
     if (!props.isError) {
-      console.log(JSON.parse(userCookie))
-      console.log('qqqqqqqqqqqqqqqqqqqq')
       fetchedUser = {
         isLogin: true,
         ...(JSON.parse(userCookie))
