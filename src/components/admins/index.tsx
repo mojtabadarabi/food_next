@@ -2,10 +2,13 @@ import LoadingButton from "@/lib/components/LoadingButton"
 import { useState } from "react"
 import { Dialog } from "@mui/material"
 import useCreateAdmin from "./useCreateAdmin"
+import AdminsList from "./components/AdminsList"
 
 export default function index({ users }) {
-  const {Component} = useCreateAdmin()
   const [open,setOpen] = useState(false)
+  const {Component} = useCreateAdmin({afterCreateCallBack:()=>{
+    setOpen(false)
+  }})
 
   console.log(users)
   console.log('users')
@@ -18,7 +21,7 @@ export default function index({ users }) {
           <div className=' bg-slate-200 rounded shadow p-4 flex items-center justify-center m-8'>
             هیچ ادمینی ندارد
           </div>
-        ) : <div/>
+        ) : <AdminsList users={users}/>
       }
       <Dialog maxWidth={'sm'} fullWidth open={open} onClose={()=>setOpen(false)}>
         {Component()}

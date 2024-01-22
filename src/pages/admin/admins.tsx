@@ -8,7 +8,6 @@ import { GetServerSidePropsContext } from 'next'
 
 export default function index() {
     const {data} = useQuery({ queryKey: ['manage-admin-page'], queryFn: () => getManageAdminsPageApi() })
-
     return (
         <div className=''>
             <ManageAdmins users={data?.restaurantAdmins||[]}/>
