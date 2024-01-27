@@ -9,5 +9,6 @@ export default {
     admin:'admin',
     accessManagement:'/admin/access',
     restaurantManagement:'/admin/restaurants',
-    adminsManagement:'/admin/admins'
+    adminsManagement:'/admin/admins',
+    foodManagement:'/admin/foods'
 }

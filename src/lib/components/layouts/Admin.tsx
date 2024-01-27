@@ -26,6 +26,11 @@ export default function Admin({ children, user }: { children: React.ReactNode, u
                ادمین ها
             </Link>
           )}
+                    {user?.permissions && user.permissions.length !== 0 && user?.permissions.includes('FOOD_MANAGEMENT') && (
+            <Link href={appRoutes.foodManagement} className={`font-sm text-bold hover:text-black `} >
+               غذا ها
+            </Link>
+          )}
 
 
         </div>

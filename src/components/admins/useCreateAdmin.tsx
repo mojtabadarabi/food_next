@@ -37,7 +37,6 @@ export default function useCreateAdmin({afterCreateCallBack}:any) {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(props)
         const ids = props.users.map(user => user._id)
         addAdminsMutate({ ids }).then(() => {
             queryClient.setQueryData(['manage-admin-page'], cashedData => {

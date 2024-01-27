@@ -5,3 +5,8 @@ export const addAdminsApi = async (payload: { ids:String[] }) => {
         baseURL: '',
     })
 }
+export const deleteAdminsApi = async (payload: { ids:String[] }) => {
+    return axiosInstance.post('/api/delete-admins',payload, {
+        baseURL: '',
+    })
+}
