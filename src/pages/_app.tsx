@@ -6,6 +6,7 @@ import '@/styles/globals.css';
 import type { AppContext, AppProps } from 'next/app';
 import NApp from 'next/app';
 import localFont from 'next/font/local';
+import 'swiper/css';
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({ src: '../../public/font/Yekan.woff' })

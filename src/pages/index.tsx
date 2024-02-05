@@ -17,7 +17,9 @@ export default function Home() {
       <HeaderImage />
       <div className="flex flex-col gap-8">
         <FoodsCategory/>
-        <MainFoods foods={data?.foods} isError={isError} />
+        <MainFoods withBackground={false} title={'پیشنهاد ویژه'} foods={data?.foods} isError={isError} />
+        <MainFoods withBackground={true} title={'غذا های محبوب'} foods={data?.foods} isError={isError} />
+        <MainFoods withBackground={false} title={'غذا ها'} foods={data?.foods} isError={isError} />
         <MainRestaurants restaurants={data?.restaurants} isError={isError} />
       </div>
     </main>
