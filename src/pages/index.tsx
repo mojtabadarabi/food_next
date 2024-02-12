@@ -6,7 +6,7 @@ import MainRestaurants from "@/components/restaurants/components/MainRestaurants
 import { reactQuerySsr } from "@/helpers/ReactQuery";
 import { useQuery } from "@tanstack/react-query";
 import { GetServerSidePropsContext } from "next";
-
+import Comments from '@/components/comments'
 
 export default function Home() {
   const { data, isError } = useQuery({ queryKey: ['main_page'], queryFn: () => getMainPageApi() })
@@ -14,6 +14,9 @@ export default function Home() {
     <main
       className={``}
     >
+      <head>
+        <title>فودینو | صفحه اصلی</title>
+      </head>
       <HeaderImage />
       <div className="flex flex-col gap-8">
         <FoodsCategory/>
@@ -21,6 +24,7 @@ export default function Home() {
         <MainFoods withBackground={true} title={'غذا های محبوب'} foods={data?.foods} isError={isError} />
         <MainFoods withBackground={false} title={'غذا ها'} foods={data?.foods} isError={isError} />
         <MainRestaurants restaurants={data?.restaurants} isError={isError} />
+        <Comments comments={data?.someComments}/>
       </div>
     </main>
   )

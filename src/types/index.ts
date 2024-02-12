@@ -7,3 +7,20 @@ export interface ImageType {
     size: number,
     type: string
 }
+
+// comments
+
+export interface CommentType{
+    _id:string,
+    text:string,
+    author:UserType,
+    date:string,
+    rate:number
+}
+
+// user
+
+export interface UserType{
+    _id:string,
+    profile:string
+}

@@ -6,12 +6,12 @@ import { GetServerSidePropsContext } from "next"
 import { useRouter } from "next/router"
 
 export default function Sign() {
-    const {setUser} = useUser()
+    const { setUser } = useUser()
     const rotuer = useRouter()
     const { mutate, isPending } = useMutation({
         mutationFn: signUserApi,
         mutationKey: ['sign'],
-        onSuccess: (data) => {  
+        onSuccess: (data) => {
             setUser(data.data)
             rotuer.push('/')
         }
@@ -21,7 +21,7 @@ export default function Sign() {
         const target = e.target as typeof e.target & {
             username: { value: string };
             password: { value: string };
-        };  
+        };
         mutate({
             username: target['username'].value,
             password: target['password'].value
@@ -29,7 +29,12 @@ export default function Sign() {
     }
 
     return (
-        <SignForm handleSubmitForm={handleSubmitForm} isPending={isPending}/>
+        <div>
+            <head>
+                <title>فودینو | ورود / ثبت نام</title>
+            </head>
+            <SignForm handleSubmitForm={handleSubmitForm} isPending={isPending} />
+        </div>
     )
 }
 

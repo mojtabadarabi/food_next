@@ -1,4 +1,5 @@
 import React from 'react';
+import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface Props {
@@ -24,6 +25,7 @@ export default function useSwiper(props: Props) {
         return (
             <Swiper
                 className='w-full'
+                modules={[Pagination]}
                 spaceBetween={sliderProps?.spaceBetween}
                 slidesPerView={sliderProps?.slidesPerView}
                 onSlideChange={() => console.log('slide change')}
