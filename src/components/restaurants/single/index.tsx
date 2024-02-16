@@ -1,8 +1,8 @@
 import { Image } from '@/lib/components'
 import { RestaurantType } from '@/types'
 
-export default function SingleRestaurant({ restaurant }: { restaurant: RestaurantType }) {
-    const { images, name, description } = restaurant
+export default function index({ restaurant }: { restaurant: RestaurantType }) {
+    const {  name, description } = restaurant
     return (
         <div className='p-4 '>
             <div className='flex flex-row gap-4 justify-between'>
@@ -11,7 +11,7 @@ export default function SingleRestaurant({ restaurant }: { restaurant: Restauran
                     <h1 className='text-xl font-light opacity-60'>{description}</h1>
                 </div>
                 <div className="relative min-w-[500px] min-h-[400px] border border-slate-400 rounded shadow-md">
-                    <Image src={images?.[0]?.src} defaultImage='/images/default-restaurant-image.png'/>
+                    <Image src={restaurant?.images?.[0]?.src} defaultImage='/images/default-restaurant-image.png' />
                 </div>
 
             </div>

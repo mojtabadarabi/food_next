@@ -15,7 +15,7 @@ export default function Footer() {
                 <Link href={'/'}>ثبت رستوران</Link>
                 <Link href={'/'}>ثبت پیک</Link>
             </div>
-            <div className="w-[45%]">
+            <div className="xl:w-[45%] w-[60%]">
                 <h1 className="text-xl font-semibold text-white">پیام به فودینو</h1>
                 <form className="flex flex-col gap-4 justify-start p-4">
                     <div className="flex gap-3">

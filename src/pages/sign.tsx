@@ -3,6 +3,7 @@ import SignForm from "@/components/SignForm"
 import { useUser } from "@/lib/providers/UserProvider"
 import { useMutation } from '@tanstack/react-query'
 import { GetServerSidePropsContext } from "next"
+import Head from "next/head"
 import { useRouter } from "next/router"
 
 export default function Sign() {
@@ -30,9 +31,9 @@ export default function Sign() {
 
     return (
         <div>
-            <head>
+            <Head>
                 <title>فودینو | ورود / ثبت نام</title>
-            </head>
+            </Head>
             <SignForm handleSubmitForm={handleSubmitForm} isPending={isPending} />
         </div>
     )

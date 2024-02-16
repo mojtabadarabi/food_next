@@ -1,7 +1,10 @@
 import LocaleDate from '@/lib/LocaleDate'
+import { H1 } from '@/lib/components/heading'
 import useSwiper from '@/lib/hooks/useSwiper'
 import { CommentType } from '@/types'
 import { BiSolidStar } from 'react-icons/bi'
+import Empty from './Empty'
+import Error from './Error'
 
 export default function index({ comments }: { comments: CommentType[] }) {
     const { getSwiper } = useSwiper({
@@ -25,14 +28,37 @@ export default function index({ comments }: { comments: CommentType[] }) {
             </div>
         },
         sliderProps: {
-            slidesPerView: 2.2,
+            slidesPerView: 1.1,
             spaceBetween: 20
+        },
+        pagination: {
+            id: 'commentsPagination',
+            className: 'flex justify-center w-full my-8 cursor-pointer relative gap-2'
+        },
+        breakpoints: {
+            576: {
+                slidesPerView: 1.1,
+            },
+            768: {
+                slidesPerView: 1.5,
+            },
+            1024: {
+                slidesPerView: 2.5,
+            },
+            // 1280: {
+            //     slidesPerView: 4,
+            // },
         }
     })
+    const checkComments = () => {
+        if (!comments) return <Error />
+        if (comments.length === 0) return <Empty />
+        return getSwiper()
+    }
     return (
         <div className='my-4'>
-            <h1 className='text-2xl font-bold text-center my-6'>نظرات کاربران</h1>
-            {getSwiper()}
+            <H1 className="text-center">نظرات کاربران</H1>
+            {checkComments()}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { getRstaurantApi } from "@/api/restaurant/client";
-import SingleRestaurant from "@/components/restaurants/components/SingleRestaurant";
+import SingleRestaurant from "@/components/restaurants/single";
 import appRoutes from "@/configs/appRoutes";
 import { reactQuerySsr } from "@/helpers/ReactQuery";
 import { useQuery } from '@tanstack/react-query';
@@ -7,7 +7,6 @@ import { GetServerSidePropsContext } from "next";
 
 export default function Index({ id }: { id: string }) {
     const { data } = useQuery({ queryKey: ['restaurant'], queryFn: () => getRstaurantApi(id) })
-    console.log(data)
     return (<SingleRestaurant restaurant={data} />)
 }
 

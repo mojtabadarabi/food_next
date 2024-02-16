@@ -1,8 +1,8 @@
 export default {
     singleFood: (id: string) => 'food/' + id,
     allFoods:'food',
-    singleRestaurant: (id: string) => 'restaurant/' + id,
-    allRestaurants:'restaurant',
+    singleRestaurant: (id: string) => 'restaurants/' + id,
+    allRestaurants:'restaurants',
     sign:'/sign',
     profile:'profile',
     home:'/',

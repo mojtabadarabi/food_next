@@ -16,4 +16,5 @@ export interface RestaurantType{
     price:number
     score:number
     images:ImageType[]
+    address:string
 }
