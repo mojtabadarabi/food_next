@@ -1,4 +1,4 @@
-import { getRestaurantPageApi } from '@/api/pages/restaurantsPage'
+import { getRestaurantsPageApi } from '@/api/pages/restaurantsPage'
 import { INITIAL_PAGE, INITIAL_PAGINATE } from '@/configs/appStatics'
 import { reactQuerySsr } from '@/helpers/ReactQuery'
 import { H1 } from '@/lib/components/heading'
@@ -18,8 +18,9 @@ export default function route() {
         Empty: () => <Empty />,
         Error: () => <Error />,
         Loading: () => <Loading paginate={paginate} />,
-        fetchFn: (page, paginate) => getRestaurantPageApi({ page, paginate }),
-        queryKey: ['restaurants_page']
+        fetchFn: (page, paginate) => getRestaurantsPageApi({ page, paginate }),
+        queryKey: ['restaurants_page'],
+        postFix:'restaurants'
     })
 
     console.log(data)
@@ -50,7 +51,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const props = await reactQuerySsr({
         context,
         queryKey: ['restaurants_page', INITIAL_PAGE],
-        queryFn: () => getRestaurantPageApi({
+        queryFn: () => getRestaurantsPageApi({
             page: INITIAL_PAGE,
             paginate: INITIAL_PAGINATE
         })

@@ -9,7 +9,8 @@ interface Props {
     Empty: () => JSX.Element
     Children: () => JSX.Element
     queryKey: any[]
-    fetchFn: (page: number, paginate: number) => any
+    fetchFn: (page: number, paginate: number) => any,
+    postFix?: string
 }
 
 export default function usePaginate(props: Props) {
@@ -19,13 +20,13 @@ export default function usePaginate(props: Props) {
         Empty,
         Children,
         queryKey,
-        fetchFn
+        fetchFn,
+        postFix = 'data'
     } = props
     const [page, setPage] = useState<number>(INITIAL_PAGE)
     const [paginate, setPaginate] = useState<number>(INITIAL_PAGINATE)
 
     const { data, isError, isLoading, isFetching } = useQuery({ queryKey: [...queryKey, page], queryFn: () => fetchFn(page, paginate) })
-
 
     const checkStatus = () => {
         if (isLoading || isFetching) {
@@ -43,6 +44,7 @@ export default function usePaginate(props: Props) {
         setPage(value);
     };
     const getPagination = () => {
+        if (data[postFix]?.data?.length === 0) return null
         return <Pagination dir={'ltr'} sx={{
             m: 'auto', color: 'red',
             '& .MuiPaginationItem-root': {
@@ -54,7 +56,7 @@ export default function usePaginate(props: Props) {
                     background: 'var(--sub-color-plate)',
                 }
             },
-        }} count={data.restaurants.totalPage} page={page} onChange={handleChange} />
+        }} count={data[postFix].totalPage} page={page} onChange={handleChange} />
     }
 
     return {
