@@ -20,7 +20,7 @@ export default function useGetMainHeaderItems() {
             },
             {
                 title: 'درباره ما',
-                href:'/about-us'
+                href:'/about'
             },
         ]
     }
